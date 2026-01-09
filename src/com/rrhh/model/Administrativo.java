@@ -9,7 +9,7 @@ package com.rrhh.model;
  * @author Pavilion X360
  */
 public class Administrativo extends Empleado{
-    private String area;
+
     private int horasExtras;
     private double VALOR_HORA_EXTRA = 15000;
 
@@ -17,34 +17,16 @@ public class Administrativo extends Empleado{
         super();
     }
 
-    public Administrativo(String area, int horasExtras) {
-        this.area = area;
-        this.horasExtras = horasExtras;
+    public Administrativo( int horasExtras) {
+            this.horasExtras = horasExtras;
     }
 
-    public Administrativo(String area, int horasExtras, int id, String rut, String nombreCompleto, double sueldo) {
+    public Administrativo( int horasExtras, int id, String rut, String nombreCompleto, double sueldo) {
         super(id, rut, nombreCompleto, sueldo);
-        this.area = area;
+
         this.horasExtras = horasExtras;
     }
 
-    
-    
-    
-       
-    
-    @Override
-    public double calcularSueldo(){
-        return this.getSueldo();
-    }
-
-    public String getArea() {
-        return area;
-    }
-
-    public void setArea(String area) {
-        this.area = area;
-    }
 
     public int getHorasExtras() {
         return horasExtras;
@@ -61,8 +43,23 @@ public class Administrativo extends Empleado{
     public void setVALOR_HORA_EXTRA(double VALOR_HORA_EXTRA) {
         this.VALOR_HORA_EXTRA = VALOR_HORA_EXTRA;
     }
+         
     
+    //METODO calcularHOraextra INTERNOS DE LA CLASE
+    public double calcularMontoHorasExtra(){
+        return this.horasExtras * VALOR_HORA_EXTRA;
+             
+    }
     
+    //METODO HEREDADO
+    @Override
+    public double calcularSueldo(){
+       double sueldo_bruto = this.getSueldo()+ calcularMontoHorasExtra();
+        //descuento previsional y/o legal(salud,prevision) 20%
+       double descuentos=sueldo_bruto *0.20;
+       double sueldo_liquido = sueldo_bruto-descuentos;
+       return sueldo_liquido;
+    }
     
     
     

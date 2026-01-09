@@ -11,7 +11,7 @@ package com.rrhh.model;
 public class Operario extends  Empleado{
     
     private int metasAlcanzadas; // numero de tareas cumplidas
-    private final double VALOR_NETO=25000; // lo que gana por cada meta
+    private final double VALOR_NETO_META_ALCANZADA=25000; // lo que gana por cada meta
 
     public Operario() {
         super();
@@ -41,7 +41,7 @@ public class Operario extends  Empleado{
         return this.getSueldo() + calcularBonoProduccion();
     }
     public double calcularBonoProduccion(){
-        double total_bono= this.metasAlcanzadas * VALOR_NETO;
+        double total_bono= this.metasAlcanzadas * VALOR_NETO_META_ALCANZADA;
         return total_bono;
     }
     
